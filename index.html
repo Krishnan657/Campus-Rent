@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusRent - Your Campus Rental Marketplace</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="min-h-screen bg-gradient-to-br from-gray-100 to-gray-200">
+    <header class="bg-white shadow-md sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-4 flex flex-wrap justify-between items-center">
+            <h1 class="text-3xl font-bold text-blue-600">CampusRent</h1>
+            <nav class="mt-4 w-full md:mt-0 md:w-auto">
+                <ul class="flex flex-wrap justify-center space-x-2 md:space-x-4">
+                    <li>
+                        <button class="bg-transparent text-blue-600 hover:text-blue-800">
+                            <i class="fas fa-home mr-2"></i> Home
+                        </button>
+                    </li>
+                    <li>
+                        <button class="bg-transparent text-blue-600 hover:text-blue-800">
+                            <i class="fas fa-box mr-2"></i> Products
+                        </button>
+                    </li>
+                    <li>
+                        <button class="bg-transparent text-blue-600 hover:text-blue-800" id="cart-btn">
+                            <i class="fas fa-shopping-cart mr-2"></i> Cart (<span id="cart-count">0</span>)
+                        </button>
+                    </li>
+                    <li>
+                        <button class="bg-transparent border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white" id="login-btn">
+                            <i class="fas fa-sign-in-alt mr-2"></i> Login
+                        </button>
+                    </li>
+                    <li>
+                        <button class="bg-transparent border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white" id="register-btn">
+                            <i class="fas fa-user-plus mr-2"></i> Register
+                        </button>
+                    </li>
+                    <li>
+                        <button class="bg-transparent border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white hidden" id="add-product-btn">
+                            <i class="fas fa-plus-square mr-2"></i> Add Product
+                        </button>
+                    </li>
+                    <li>
+                        <button class="bg-transparent border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white hidden" id="logout-btn">
+                            <i class="fas fa-sign-out-alt mr-2"></i> Logout
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+            <!-- Search Bar Container -->
+            <div class="w-full md:w-1/3 lg:w-1/4 mt-4 md:mt-0">
+                <input type="text" id="search-input" placeholder="Search for products..." class="w-full p-2 border border-gray-300 rounded-md">
+            </div>
+        </div>
+    </header>
+    
+    
+    
+        <div id="product-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Product 1 -->
+            
+            <div class="product-card">
+                <a href="https://example.com/product1" target="_blank" class="product-image-link">
+                    <img src="https://www.meesho.com/men-printed-pure-cotton-straight-kurta-yellow-orange-only-kurta/p/1vkpdy" 
+                         alt="Product 1" 
+                         class="product-image">
+                </a>
+                <div class="product-info">
+                    <h3 class="product-title">
+                        <a href="https://example.com/product1" target="_blank" class="text-blue-600 hover:underline">
+                            Kurta
+                        </a>
+                    </h3>
+                    <p class="product-description">This is the description for product 1.</p>
+                    <p class="product-price">$10.00</p>
+                </div>
+                <div class="product-action">
+                    <button class="btn btn-primary w-full" onclick="addToCart('1', 'Product 1', 10.00)">Add to Cart</button>
+                </div>
+            </div>
+            
+            
+            <!-- Product 2 -->
+            <div class="product-card">
+                <a href="https://example.com/product2" target="_blank" class="product-image-link">
+                    <img src="https://m.media-amazon.com/images/I/61IduqXygwL._AC_UY350_.jpg" 
+                         alt="Product 2" 
+                         class="product-image">
+                </a>
+                <div class="product-info">
+                    <h3 class="product-title">
+                        <a href="https://example.com/product2" target="_blank" class="text-blue-600 hover:underline">
+                            Watch
+                        </a>
+                    </h3>
+                    <p class="product-description">This is the description for product 2.</p>
+                    <p class="product-price">$25.00</p>
+                </div>
+                <div class="product-action">
+                    <button class="btn btn-primary w-full" onclick="addToCart('2', 'Product 2', 25.00)">Add to Cart</button>
+                </div>
+            </div>
+            
+    
+            <!-- Product 3 -->
+            <div class="product-card">
+                <a href="https://example.com/product3" target="_blank" class="product-image-link">
+                    <img src="https://images.jdmagicbox.com/quickquotes/images_main/zebronics-headphones-05-08-2021-143-239875160-fik6l.jpg" 
+                         alt="Product 3" 
+                         class="product-image">
+                </a>
+                <div class="product-info">
+                    <h3 class="product-title">
+                        <a href="https://example.com/product3" target="_blank" class="text-blue-600 hover:underline">
+                            HeadPhone
+                        </a>
+                    </h3>
+                    <p class="product-description">This is the description for product 3.</p>
+                    <p class="product-price">$50.00</p>
+                </div>
+                <div class="product-action">
+                    <button class="btn btn-primary w-full" onclick="addToCart('3', 'Product 3', 50.00)">Add to Cart</button>
+                </div>
+            </div>
+            
+    
+            <!-- Product 4 -->
+            <div class="product-card">
+                <a href="https://example.com/product4" target="_blank" class="product-image-link">
+                    <img src="https://bsmedia.business-standard.com/_media/bs/img/article/2023-10/26/full/1698313539-4563.jpg?im=FitAndFill=(826,465)" 
+                         alt="Product 4" 
+                         class="product-image">
+                </a>
+                <div class="product-info">
+                    <h3 class="product-title">
+                        <a href="https://example.com/product4" target="_blank" class="text-blue-600 hover:underline">
+                            Nokia Mobile
+                        </a>
+                    </h3>
+                    <p class="product-description">This is the description for product 4.</p>
+                    <p class="product-price">$75.00</p>
+                </div>
+                <div class="product-action">
+                    <button class="btn btn-primary w-full" onclick="addToCart('4', 'Product 4', 75.00)">Add to Cart</button>
+                </div>
+            </div>
+            
+    
+            <!-- Product 5 -->
+            <div class="product-card">
+                <a href="https://example.com/product5" target="_blank" class="product-image-link">
+                    <img src="https://cdn.thewirecutter.com/wp-content/media/2022/11/techgifts-2048px-soundcore.jpg?auto=webp&quality=75&crop=1.91:1&width=1200" 
+                         alt="Product 5" 
+                         class="product-image">
+                </a>
+                <div class="product-info">
+                    <h3 class="product-title">
+                        <a href="https://example.com/product5" target="_blank" class="text-blue-600 hover:underline">
+                           Ear bud
+                        </a>
+                    </h3>
+                    <p class="product-description">This is the description for product 5.</p>
+                    <p class="product-price">$89.99</p>
+                </div>
+                <div class="product-action">
+                    <button class="btn btn-primary w-full" onclick="addToCart('5', 'Product 5', 89.99)">Add to Cart</button>
+                </div>
+            </div>
+            
+    
+            <!-- Product 6 -->
+            <div class="product-card">
+                <img src="https://via.placeholder.com/300" alt="Product 6" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Product 6</h3>
+                    <p class="product-description">This is the description for product 6.</p>
+                    <p class="product-price">$30.00</p>
+                </div>
+                <div class="product-action">
+                    <button class="btn btn-primary w-full" onclick="addToCart('6', 'Product 6', 30.00)">Add to Cart</button>
+                </div>
+            </div>
+    
+            <!-- Product 7 -->
+            <div class="product-card">
+                <img src="https://via.placeholder.com/300" alt="Product 7" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Product 7</h3>
+                    <p class="product-description">This is the description for product 7.</p>
+                    <p class="product-price">$35.00</p>
+                </div>
+                <div class="product-action">
+                    <button class="btn btn-primary w-full" onclick="addToCart('7', 'Product 7', 35.00)">Add to Cart</button>
+                </div>
+            </div>
+    
+            <!-- Product 8 -->
+            <div class="product-card">
+                <img src="https://via.placeholder.com/300" alt="Product 8" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Product 8</h3>
+                    <p class="product-description">This is the description for product 8.</p>
+                    <p class="product-price">$40.00</p>
+                </div>
+                <div class="product-action">
+                    <button class="btn btn-primary w-full" onclick="addToCart('8', 'Product 8', 40.00)">Add to Cart</button>
+                </div>
+            </div>
+    
+            <!-- Product 9 -->
+            <div class="product-card">
+                <img src="https://via.placeholder.com/300" alt="Product 9" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Product 9</h3>
+                    <p class="product-description">This is the description for product 9.</p>
+                    <p class="product-price">$45.00</p>
+                </div>
+                <div class="product-action">
+                    <button class="btn btn-primary w-full" onclick="addToCart('9', 'Product 9', 45.00)">Add to Cart</button>
+                </div>
+            </div>
+    
+            <!-- Product 10 -->
+            <div class="product-card">
+                <img src="https://via.placeholder.com/300" alt="Product 10" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Product 10</h3>
+                    <p class="product-description">This is the description for product 10.</p>
+                    <p class="product-price">$50.00</p>
+                </div>
+                <div class="product-action">
+                    <button class="btn btn-primary w-full" onclick="addToCart('10', 'Product 10', 50.00)">Add to Cart</button>
+                </div>
+            </div>
+    
+            <!-- Product 11 -->
+            <div class="product-card">
+                <img src="https://via.placeholder.com/300" alt="Product 11" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Product 11</h3>
+                    <p class="product-description">This is the description for product 11.</p>
+                    <p class="product-price">$55.00</p>
+                </div>
+                <div class="product-action">
+                    <button class="btn btn-primary w-full" onclick="addToCart('11', 'Product 11', 55.00)">Add to Cart</button>
+                </div>
+            </div>
+    
+            <!-- Product 12 -->
+            <div class="product-card">
+                <img src="https://via.placeholder.com/300" alt="Product 12" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Product 12</h3>
+                    <p class="product-description">This is the description for product 12.</p>
+                    <p class="product-price">$60.00</p>
+                </div>
+                <div class="product-action">
+                    <button class="btn btn-primary w-full" onclick="addToCart('12', 'Product 12', 60.00)">Add to Cart</button>
+                </div>
+            </div>
+    
+        
+            <div id="cart-section" class="hidden border rounded-lg p-4 mt-6 bg-gray-100">
+                <h2 class="text-xl font-semibold mb-4">Your Cart</h2>
+                <div id="cart-items" class="space-y-2"></div>
+                <p id="empty-cart-message" class="text-gray-600">Your cart is empty.</p>
+                <div class="mt-4">
+                    <button id="clear-cart-btn" class="btn btn-danger hidden">
+                        <i class="fas fa-trash"></i> Clear Cart
+                    </button>
+                </div>
+            </div>
+        </main>
+        
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2 class="text-2xl font-bold mb-4">Login</h2>
+            <form id="login-form">
+                <div class="mb-4">
+                    <label for="login-email" class="block mb-2">Email</label>
+                    <input type="email" id="login-email" required class="w-full p-2 border border-gray-300 rounded-md">
+                </div>
+                <div class="mb-4">
+                    <label for="login-password" class="block mb-2">Password</label>
+                    <input type="password" id="login-password" required class="w-full p-2 border border-gray-300 rounded-md">
+                </div>
+                <button type="submit" class="bg-blue-600 text-white w-full py-2 rounded-md">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="register-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2 class="text-2xl font-bold mb-4">Register</h2>
+            <form id="register-form">
+                <div class="mb-4">
+                    <label for="register-username" class="block mb-2">Username</label>
+                    <input type="text" id="register-username" required class="w-full p-2 border border-gray-300 rounded-md">
+                </div>
+                <div class="mb-4">
+                    <label for="register-email" class="block mb-2">Email</label>
+                    <input type="email" id="register-email" required class="w-full p-2 border border-gray-300 rounded-md">
+                </div>
+                <div class="mb-4">
+                    <label for="register-password" class="block mb-2">Password</label>
+                    <input type="password" id="register-password" required class="w-full p-2 border border-gray-300 rounded-md">
+                </div>
+                <button type="submit" class="bg-blue-600 text-white w-full py-2 rounded-md">Register</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Product Modal -->
+    <div id="add-product-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2 class="text-2xl font-bold mb-4">Add New Product</h2>
+            <form id="add-product-form">
+                <div class="mb-4">
+                    <label for="product-name" class="block mb-2">Product Name</label>
+                    <input type="text" id="product-name" required class="w-full p-2 border border-gray-300 rounded-md">
+                </div>
+                <div class="mb-4">
+                    <label for="product-description" class="block mb-2">Description</label>
+                    <textarea id="product-description" required class="w-full p-2 border border-gray-300 rounded-md"></textarea>
+                </div>
+                <div class="mb-4">
+                    <label for="product-price" class="block mb-2">Price</label>
+                    <input type="number" id="product-price" step="0.01" required class="w-full p-2 border border-gray-300 rounded-md">
+                </div>
+                <div class="mb-4">
+                    <label for="product-image" class="block mb-2">Image URL</label>
+                    <input type="url" id="product-image" required class="w-full p-2 border border-gray-300 rounded-md">
+                </div>
+                <button type="submit" class="bg-blue-600 text-white w-full py-2 rounded-md">Add Product</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="bg-gray-800 text-white py-8 mt-16">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2024 CampusRent. All rights reserved.</p>
+            <div class="mt-4 flex justify-center space-x-4">
+                <a href="#" class="text-white hover:text-gray-400">Terms</a>
+                <a href="#" class="text-white hover:text-gray-400">Privacy</a>
+                <a href="#" class="text-white hover:text-gray-400">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
+
+</html>
+
